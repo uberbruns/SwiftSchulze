@@ -17,7 +17,7 @@ let rankingOption = arguments.add(
 
 let formatOption = arguments.add(
     Argument<OutputFormat>
-        .optionWithValue("f", "format", name: "Output format ", description: "The output format ('plain' or 'json')")
+        .optionWithValue("f", "format", name: "Output format", description: "The output format ('plain' or 'json').")
 )
 
 let stdInOption = arguments.add(
@@ -27,7 +27,7 @@ let stdInOption = arguments.add(
 
 let pathOption = arguments.add(
     Argument<Bool>
-        .optionWithValue("p", "path", name: "Input path", description: "")
+        .optionWithValue("p", "path", name: "Input path", description: "A path to file containing the votes. Every line is a comma seperated ranking for one voter.")
 )
 
 
