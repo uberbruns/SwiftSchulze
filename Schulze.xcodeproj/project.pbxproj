@@ -111,14 +111,14 @@
             "OBJ_20"
          );
          name = "Moderator 0.5.0";
-         path = ".build/checkouts/Moderator.git-110391117431164020/Sources";
+         path = ".build/checkouts/Moderator.git-300174058477142503/Sources";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_17" = {
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
-         path = "/Users/karstenbruns/Repositories/Schulze/.build/checkouts/Moderator.git-110391117431164020/Package.swift";
+         path = "/Users/karstenbruns/Repositories/SwiftSchulze/.build/checkouts/Moderator.git-300174058477142503/Package.swift";
          sourceTree = "<group>";
       };
       "OBJ_18" = {
@@ -149,8 +149,8 @@
          isa = "PBXGroup";
          children = (
             "Moderator::Moderator::Product",
-            "Schulze::Schulze::Product",
-            "Schulze::SchulzeTests::Product"
+            "Schulze::SchulzeTests::Product",
+            "Schulze::Schulze::Product"
          );
          name = "Products";
          path = "";

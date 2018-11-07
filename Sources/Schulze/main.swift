@@ -17,7 +17,7 @@ let rankingOption = arguments.add(
 
 let formatOption = arguments.add(
     Argument<OutputFormat>
-        .optionWithValue("f", "format", name: "Format", description: "The output format ('plain' or 'json')")
+        .optionWithValue("f", "format", name: "Output format ", description: "The output format ('plain' or 'json')")
 )
 
 let stdInOption = arguments.add(
@@ -25,34 +25,47 @@ let stdInOption = arguments.add(
         .option("i", "stdin", description: "")
 )
 
+let pathOption = arguments.add(
+    Argument<Bool>
+        .optionWithValue("p", "path", name: "Input path", description: "")
+)
+
 
 do {
     try arguments.parse()
 
-    let rankings: [[String]]
+    let lines: [String]
+    var finalRanking = [[String]]()
 
-    if stdInOption.value {
+    if let path = pathOption.value, let fileContent = try? String(contentsOfFile: path) {
+        lines = fileContent.components(separatedBy: "\n")
+    } else if stdInOption.value {
         let data = FileHandle.standardInput.readDataToEndOfFile()
-        rankings = String(bytes: data, encoding: .utf8)!.components(separatedBy: "\n").map { list in
-            list.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-        }
+        lines = String(bytes: data, encoding: .utf8)!.components(separatedBy: "\n")
     } else {
-        rankings = rankingOption.value.map { list in
-            list.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-        }
+        lines = rankingOption.value
     }
 
+    let rankings = lines.map { list in
+        list.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+    }
+
+    var rankedCandidates = Set<String>()
     let candidateSet = rankings.reduce(into: Set<String>()) { $0.formUnion($1) }
-    let candidates = Array(candidateSet)
+    var candidates = Array(candidateSet)
 
-    let indexedRankings = rankings.map { ranking in
-        ranking.map { candidates.index(of: $0)! }
+    while rankedCandidates.count < candidateSet.count {
+        let indexedRankings = rankings.map { ranking in
+            ranking.compactMap { candidates.index(of: $0) }
+        }
+        let rank = Schulze.winners(of: candidates, rankings: indexedRankings)
+        candidates.removeAll(where: { rank.contains($0) })
+        rankedCandidates.formUnion(rank)
+        finalRanking.append(rank)
     }
-
-    let winners = Schulze.winners(of: candidates, rankings: indexedRankings)
 
     if formatOption.value == OutputFormat.json.rawValue {
-        let output = ["winners": winners]
+        let output = ["finalRanking": finalRanking]
         let writingOptions: JSONSerialization.WritingOptions
         let data: Data
 
@@ -65,7 +78,7 @@ do {
         data = try JSONSerialization.data(withJSONObject: output, options: writingOptions)
         print(String(bytes: data, encoding: .utf8)!)
     } else {
-        print(winners.joined(separator: ", "))
+        print(finalRanking.map({ $0.joined(separator: ", ") }).joined(separator: "\n"))
     }
 
 } catch {
