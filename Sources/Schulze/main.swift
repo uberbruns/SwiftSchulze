@@ -1,39 +1,47 @@
-
 import Foundation
 import Moderator
 
+
+// MARK: - Command Line Interface -
+// MARK: Input Types
 
 enum OutputFormat: String {
     case plain, json
 }
 
 
-let arguments = Moderator(description: "Tool for calculating the winner of an election where the voters cast their vote by providing a ranked list of candidates.")
+// MARK: Configuration
+
+let arguments = Moderator(description: "Tool for calculating the winner of an election by letting voters cast their vote in form of a ranked list of candidates.")
+
 let rankingOption = arguments.add(
     Argument<String>
-        .optionWithValue("r", "ranking", name: "Ranking", description: "A ranking of candidates provoded by a voter.")
+        .optionWithValue("r", "ranking", name: "Ranking", description: "A comma separated ranking of candidates casted by one voter. Repeat this option for every participant.")
         .repeat()
 )
 
 let formatOption = arguments.add(
     Argument<OutputFormat>
-        .optionWithValue("f", "format", name: "Output format", description: "The output format ('plain' or 'json').")
+        .optionWithValue("f", "format", name: "Format", description: "The output format ('plain' or 'json').")
 )
 
 let stdInOption = arguments.add(
     Argument<Bool>
-        .option("i", "stdin", description: "")
+        .option("i", "stdin", description: "Takes a list of votes from standard input. Every line should contain a comma separated ranking.")
 )
 
 let pathOption = arguments.add(
     Argument<Bool>
-        .optionWithValue("p", "path", name: "Input path", description: "A path to file containing the votes. Every line is a comma seperated ranking for one voter.")
+        .optionWithValue("p", "path", name: "Path", description: "Use this option to provide a path to a file containing the casted rankings. Every line should contain a comma separated ranking.")
 )
 
+
+// MARK: Main Input Handling
 
 do {
     try arguments.parse()
 
+    // Parse input into `rankings`
     let lines: [String]
     var finalRanking = [[String]]()
 
@@ -42,28 +50,32 @@ do {
     } else if stdInOption.value {
         let data = FileHandle.standardInput.readDataToEndOfFile()
         lines = String(bytes: data, encoding: .utf8)!.components(separatedBy: "\n")
-    } else {
+    } else if !rankingOption.value.isEmpty {
         lines = rankingOption.value
+    } else {
+        print(arguments.usagetext)
+        exit(1)
     }
+
 
     let rankings = lines.map { list in
         list.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
     }
 
+    // Calculate winner table
     var rankedCandidates = Set<String>()
     let candidateSet = rankings.reduce(into: Set<String>()) { $0.formUnion($1) }
     var candidates = Array(candidateSet)
 
     while rankedCandidates.count < candidateSet.count {
-        let indexedRankings = rankings.map { ranking in
-            ranking.compactMap { candidates.index(of: $0) }
-        }
+        let indexedRankings = rankings.map { ranking in ranking.compactMap { candidates.index(of: $0) }}
         let rank = Schulze.winners(of: candidates, rankings: indexedRankings)
         candidates.removeAll(where: { rank.contains($0) })
         rankedCandidates.formUnion(rank)
         finalRanking.append(rank)
     }
 
+    // Output final ranking
     if formatOption.value == OutputFormat.json.rawValue {
         let output = ["finalRanking": finalRanking]
         let writingOptions: JSONSerialization.WritingOptions
