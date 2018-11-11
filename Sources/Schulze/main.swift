@@ -32,7 +32,17 @@ let stdInOption = arguments.add(
 
 let pathOption = arguments.add(
     Argument<Bool>
-        .optionWithValue("p", "path", name: "Path", description: "Use this option to provide a path to a file containing the casted rankings. Every line should contain a comma separated ranking.")
+        .optionWithValue("p", "path", name: "Path", description: "Use this option to provide a path to a file containing the casted rankings. Every line should contain the candidates ranked by one voter seperated via comma.")
+)
+
+let directoryOption = arguments.add(
+    Argument<Bool>
+        .optionWithValue("d", "directory", name: "Directory", description: "Use this option to provide a directory containing .txt files. Every file should contain the candidates ranked by one voter. One candidate per line.")
+)
+
+let helpOption = arguments.add(
+    Argument<Bool>
+        .option("h", "help", description: "Prints this help page.")
 )
 
 
@@ -41,31 +51,54 @@ let pathOption = arguments.add(
 do {
     try arguments.parse()
 
-    // Parse input into `rankings`
-    let lines: [String]
-    var finalRanking = [[String]]()
-
-    if let path = pathOption.value, let fileContent = try? String(contentsOfFile: path) {
-        lines = fileContent.components(separatedBy: "\n")
-    } else if stdInOption.value {
-        let data = FileHandle.standardInput.readDataToEndOfFile()
-        lines = String(bytes: data, encoding: .utf8)!.components(separatedBy: "\n")
-    } else if !rankingOption.value.isEmpty {
-        lines = rankingOption.value
-    } else {
+    if helpOption.value {
         print(arguments.usagetext)
-        exit(1)
+        exit(0)
+    }
+
+    // Parse input into `rankings`
+    let rankings: [[String]]
+
+    if let directory = directoryOption.value {
+        let url = URL(fileURLWithPath: directory)
+        let contents = try FileManager.default.contentsOfDirectory(at: url,
+                                                                   includingPropertiesForKeys: nil,
+                                                                   options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles, .skipsPackageDescendants])
+        var foundRankings = [[String]]()
+        for fileURL in contents where fileURL.pathExtension == "txt" {
+            let fileContent = try String(contentsOf: fileURL)
+            let candidates = fileContent.components(separatedBy: "\n").map { $0.trimmingCharacters(in: .whitespaces) }
+            foundRankings.append(candidates)
+        }
+        rankings = foundRankings
+
+    } else {
+        let lines: [String]
+
+        if let path = pathOption.value {
+            let fileContent = try String(contentsOfFile: path)
+            lines = fileContent.components(separatedBy: "\n")
+        } else if stdInOption.value {
+            let data = FileHandle.standardInput.readDataToEndOfFile()
+            lines = String(bytes: data, encoding: .utf8)!.components(separatedBy: "\n")
+        } else if !rankingOption.value.isEmpty {
+            lines = rankingOption.value
+        } else {
+            print(arguments.usagetext)
+            exit(1)
+        }
+
+        rankings = lines.map { list in
+            list.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+        }
     }
 
 
-    let rankings = lines.map { list in
-        list.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
-    }
-
-    // Calculate winner table
+    // Calculate final ranking
+    var finalRanking = [[String]]()
     var rankedCandidates = Set<String>()
     let candidateSet = rankings.reduce(into: Set<String>()) { $0.formUnion($1) }
-    var candidates = Array(candidateSet)
+    var candidates = Array(candidateSet).sorted()
 
     while rankedCandidates.count < candidateSet.count {
         let indexedRankings = rankings.map { ranking in ranking.compactMap { candidates.index(of: $0) }}

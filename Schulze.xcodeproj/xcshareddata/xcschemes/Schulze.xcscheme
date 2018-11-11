@@ -64,12 +64,24 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "--path /Users/karstenbruns/Desktop/DeleteMe/votes.txt"
+            argument = "--path /Users/karstenbruns/Repositories/SwiftSchulze/Sources/votes.txt"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-d /Users/karstenbruns/Repositories/SwiftSchulze/TestData/VoteDirectory"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--format json"
             isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-r A,B,C"
+            isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-r A,C,B"
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
