@@ -67,7 +67,9 @@ do {
         var foundRankings = [[String]]()
         for fileURL in contents where fileURL.pathExtension == "txt" {
             let fileContent = try String(contentsOf: fileURL)
-            let candidates = fileContent.components(separatedBy: "\n").map { $0.trimmingCharacters(in: .whitespaces) }
+            let candidates = fileContent.components(separatedBy: "\n")
+                .map { $0.trimmingCharacters(in: .whitespaces) }
+                .filter { !$0.isEmpty }
             foundRankings.append(candidates)
         }
         rankings = foundRankings
@@ -89,7 +91,9 @@ do {
         }
 
         rankings = lines.map { list in
-            list.components(separatedBy: ",").map { $0.trimmingCharacters(in: .whitespaces) }
+            list.components(separatedBy: ",")
+                .map { $0.trimmingCharacters(in: .whitespaces) }
+                .filter { !$0.isEmpty }
         }
     }
 
