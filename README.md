@@ -18,7 +18,7 @@ mint install uberbruns/SwiftSchulze
 ```
 Tool for calculating the winner of an election by letting voters cast their vote in form of a ranked list of candidates.
 
-Usage: Schulze
+Usage: schulze
   -r,--ranking <Ranking>:
       A comma separated ranking of candidates casted by one voter. Repeat this option for every participant.
   -f,--format <Format>:
