@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Schulze::Schulze"
-               BuildableName = "Schulze"
-               BlueprintName = "Schulze"
+               BlueprintIdentifier = "Schulze::SchulzeCLI"
+               BuildableName = "SchulzeCLI"
+               BlueprintName = "SchulzeCLI"
                ReferencedContainer = "container:Schulze.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -56,38 +56,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Schulze::Schulze"
-            BuildableName = "Schulze"
-            BlueprintName = "Schulze"
+            BlueprintIdentifier = "Schulze::SchulzeCLI"
+            BuildableName = "SchulzeCLI"
+            BlueprintName = "SchulzeCLI"
             ReferencedContainer = "container:Schulze.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <CommandLineArguments>
-         <CommandLineArgument
-            argument = "--path /Users/karstenbruns/Repositories/SwiftSchulze/Sources/votes.txt"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-d /Users/karstenbruns/Repositories/SwiftSchulze/TestData/VoteDirectory"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--format json"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-r A,B,C"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-r A,C,B"
-            isEnabled = "NO">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--help"
-            isEnabled = "NO">
-         </CommandLineArgument>
-      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

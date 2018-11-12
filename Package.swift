@@ -6,7 +6,8 @@ import PackageDescription
 let package = Package(
     name: "Schulze",
     products: [
-        .executable(name: "schulze", targets: ["Schulze"]),
+        .executable(name: "schulze", targets: ["SchulzeCLI"]),
+        .library(name: "SchulzeLibrary", targets: ["SchulzeLibrary"]),
         ],
     dependencies: [
         .package(url: "https://github.com/kareman/Moderator.git", from: "0.5.0"),
@@ -15,11 +16,14 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "Schulze",
-            dependencies: ["Moderator"]),
+            name: "SchulzeCLI",
+            dependencies: ["SchulzeLibrary", "Moderator"]),
+        .target(
+            name: "SchulzeLibrary",
+            dependencies: []),
         .testTarget(
             name: "SchulzeTests",
-            dependencies: ["Schulze"]),
+            dependencies: ["SchulzeLibrary"]),
         ]
 )
 

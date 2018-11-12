@@ -5,10 +5,10 @@
    objects = {
       "Moderator::Moderator" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_26";
+         buildConfigurationList = "OBJ_29";
          buildPhases = (
-            "OBJ_29",
-            "OBJ_33"
+            "OBJ_32",
+            "OBJ_36"
          );
          dependencies = (
          );
@@ -24,9 +24,9 @@
       };
       "Moderator::SwiftPMPackageDescription" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_35";
+         buildConfigurationList = "OBJ_38";
          buildPhases = (
-            "OBJ_38"
+            "OBJ_41"
          );
          dependencies = (
          );
@@ -47,12 +47,13 @@
             "en"
          );
          mainGroup = "OBJ_5";
-         productRefGroup = "OBJ_21";
+         productRefGroup = "OBJ_23";
          projectDirPath = ".";
          targets = (
             "Moderator::Moderator",
             "Moderator::SwiftPMPackageDescription",
-            "Schulze::Schulze",
+            "Schulze::SchulzeCLI",
+            "Schulze::SchulzeLibrary",
             "Schulze::SwiftPMPackageDescription",
             "Schulze::SchulzePackageTests::ProductTarget",
             "Schulze::SchulzeTests",
@@ -60,75 +61,79 @@
          );
       };
       "OBJ_10" = {
-         isa = "PBXFileReference";
-         path = "main.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_11" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_12"
+            "OBJ_11"
+         );
+         name = "SchulzeLibrary";
+         path = "Sources/SchulzeLibrary";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_11" = {
+         isa = "PBXFileReference";
+         path = "Schulze.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_12" = {
+         isa = "PBXGroup";
+         children = (
+            "OBJ_13"
          );
          name = "Tests";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_12" = {
+      "OBJ_13" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_13",
-            "OBJ_14"
+            "OBJ_14",
+            "OBJ_15"
          );
          name = "SchulzeTests";
          path = "Tests/SchulzeTests";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_13" = {
+      "OBJ_14" = {
          isa = "PBXFileReference";
          path = "SchulzeTests.swift";
          sourceTree = "<group>";
       };
-      "OBJ_14" = {
+      "OBJ_15" = {
          isa = "PBXFileReference";
          path = "XCTestManifests.swift";
          sourceTree = "<group>";
       };
-      "OBJ_15" = {
+      "OBJ_16" = {
+         isa = "PBXFileReference";
+         path = "TestData";
+         sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_17" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_16"
+            "OBJ_18"
          );
          name = "Dependencies";
          path = "";
          sourceTree = "<group>";
       };
-      "OBJ_16" = {
+      "OBJ_18" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_17",
-            "OBJ_18",
             "OBJ_19",
-            "OBJ_20"
+            "OBJ_20",
+            "OBJ_21",
+            "OBJ_22"
          );
          name = "Moderator 0.5.0";
          path = ".build/checkouts/Moderator.git-300174058477142503/Sources";
          sourceTree = "SOURCE_ROOT";
       };
-      "OBJ_17" = {
+      "OBJ_19" = {
          isa = "PBXFileReference";
          explicitFileType = "sourcecode.swift";
          name = "Package.swift";
          path = "/Users/karstenbruns/Repositories/SwiftSchulze/.build/checkouts/Moderator.git-300174058477142503/Package.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_18" = {
-         isa = "PBXFileReference";
-         path = "Moderator.swift";
-         sourceTree = "<group>";
-      };
-      "OBJ_19" = {
-         isa = "PBXFileReference";
-         path = "Parsers.swift";
          sourceTree = "<group>";
       };
       "OBJ_2" = {
@@ -142,110 +147,39 @@
       };
       "OBJ_20" = {
          isa = "PBXFileReference";
-         path = "SwiftCompat.swift";
+         path = "Moderator.swift";
          sourceTree = "<group>";
       };
       "OBJ_21" = {
+         isa = "PBXFileReference";
+         path = "Parsers.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_22" = {
+         isa = "PBXFileReference";
+         path = "SwiftCompat.swift";
+         sourceTree = "<group>";
+      };
+      "OBJ_23" = {
          isa = "PBXGroup";
          children = (
             "Moderator::Moderator::Product",
+            "Schulze::SchulzeLibrary::Product",
             "Schulze::SchulzeTests::Product",
-            "Schulze::Schulze::Product"
+            "Schulze::SchulzeCLI::Product"
          );
          name = "Products";
          path = "";
          sourceTree = "BUILT_PRODUCTS_DIR";
       };
-      "OBJ_26" = {
+      "OBJ_29" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_27",
-            "OBJ_28"
+            "OBJ_30",
+            "OBJ_31"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
-      };
-      "OBJ_27" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Schulze.xcodeproj/Moderator_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "Moderator";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "Moderator";
-         };
-         name = "Debug";
-      };
-      "OBJ_28" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            ENABLE_TESTABILITY = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Schulze.xcodeproj/Moderator_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            PRODUCT_BUNDLE_IDENTIFIER = "Moderator";
-            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
-            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-            SKIP_INSTALL = "YES";
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
-            );
-            SWIFT_VERSION = "4.0";
-            TARGET_NAME = "Moderator";
-         };
-         name = "Release";
-      };
-      "OBJ_29" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_30",
-            "OBJ_31",
-            "OBJ_32"
-         );
       };
       "OBJ_3" = {
          isa = "XCBuildConfiguration";
@@ -287,32 +221,114 @@
          name = "Debug";
       };
       "OBJ_30" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_18";
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Schulze.xcodeproj/Moderator_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Moderator";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "Moderator";
+         };
+         name = "Debug";
       };
       "OBJ_31" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_19";
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Schulze.xcodeproj/Moderator_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "Moderator";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.0";
+            TARGET_NAME = "Moderator";
+         };
+         name = "Release";
       };
       "OBJ_32" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_33",
+            "OBJ_34",
+            "OBJ_35"
+         );
+      };
+      "OBJ_33" = {
          isa = "PBXBuildFile";
          fileRef = "OBJ_20";
       };
-      "OBJ_33" = {
+      "OBJ_34" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_21";
+      };
+      "OBJ_35" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_22";
+      };
+      "OBJ_36" = {
          isa = "PBXFrameworksBuildPhase";
          files = (
          );
       };
-      "OBJ_35" = {
+      "OBJ_38" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_36",
-            "OBJ_37"
+            "OBJ_39",
+            "OBJ_40"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_36" = {
+      "OBJ_39" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             LD = "/usr/bin/true";
@@ -329,34 +345,6 @@
             SWIFT_VERSION = "3.0";
          };
          name = "Debug";
-      };
-      "OBJ_37" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "3",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/3",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode_10/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "3.0";
-         };
-         name = "Release";
-      };
-      "OBJ_38" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_39"
-         );
-      };
-      "OBJ_39" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_17";
       };
       "OBJ_4" = {
          isa = "XCBuildConfiguration";
@@ -390,16 +378,44 @@
          };
          name = "Release";
       };
+      "OBJ_40" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+            LD = "/usr/bin/true";
+            OTHER_SWIFT_FLAGS = (
+               "-swift-version",
+               "3",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/3",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode_10/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
+            );
+            SWIFT_VERSION = "3.0";
+         };
+         name = "Release";
+      };
       "OBJ_41" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_42"
+         );
+      };
+      "OBJ_42" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_19";
+      };
+      "OBJ_44" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_42",
-            "OBJ_43"
+            "OBJ_45",
+            "OBJ_46"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_42" = {
+      "OBJ_45" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             FRAMEWORK_SEARCH_PATHS = (
@@ -409,7 +425,7 @@
             HEADER_SEARCH_PATHS = (
                "$(inherited)"
             );
-            INFOPLIST_FILE = "Schulze.xcodeproj/Schulze_Info.plist";
+            INFOPLIST_FILE = "Schulze.xcodeproj/SchulzeCLI_Info.plist";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
@@ -430,11 +446,11 @@
             SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
             SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
             SWIFT_VERSION = "4.2";
-            TARGET_NAME = "Schulze";
+            TARGET_NAME = "SchulzeCLI";
          };
          name = "Debug";
       };
-      "OBJ_43" = {
+      "OBJ_46" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
             FRAMEWORK_SEARCH_PATHS = (
@@ -444,7 +460,7 @@
             HEADER_SEARCH_PATHS = (
                "$(inherited)"
             );
-            INFOPLIST_FILE = "Schulze.xcodeproj/Schulze_Info.plist";
+            INFOPLIST_FILE = "Schulze.xcodeproj/SchulzeCLI_Info.plist";
             LD_RUNPATH_SEARCH_PATHS = (
                "$(inherited)",
                "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
@@ -465,126 +481,148 @@
             SWIFT_FORCE_DYNAMIC_LINK_STDLIB = "YES";
             SWIFT_FORCE_STATIC_LINK_STDLIB = "NO";
             SWIFT_VERSION = "4.2";
-            TARGET_NAME = "Schulze";
+            TARGET_NAME = "SchulzeCLI";
          };
          name = "Release";
       };
-      "OBJ_44" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_45",
-            "OBJ_46"
-         );
-      };
-      "OBJ_45" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_9";
-      };
-      "OBJ_46" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_10";
-      };
       "OBJ_47" = {
-         isa = "PBXFrameworksBuildPhase";
+         isa = "PBXSourcesBuildPhase";
          files = (
             "OBJ_48"
          );
       };
       "OBJ_48" = {
          isa = "PBXBuildFile";
-         fileRef = "Moderator::Moderator::Product";
+         fileRef = "OBJ_9";
       };
       "OBJ_49" = {
-         isa = "PBXTargetDependency";
-         target = "Moderator::Moderator";
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_50",
+            "OBJ_51"
+         );
       };
       "OBJ_5" = {
          isa = "PBXGroup";
          children = (
             "OBJ_6",
             "OBJ_7",
-            "OBJ_11",
-            "OBJ_15",
-            "OBJ_21"
+            "OBJ_12",
+            "OBJ_16",
+            "OBJ_17",
+            "OBJ_23"
          );
          path = "";
          sourceTree = "<group>";
       };
+      "OBJ_50" = {
+         isa = "PBXBuildFile";
+         fileRef = "Moderator::Moderator::Product";
+      };
       "OBJ_51" = {
-         isa = "XCConfigurationList";
-         buildConfigurations = (
-            "OBJ_52",
-            "OBJ_53"
-         );
-         defaultConfigurationIsVisible = "0";
-         defaultConfigurationName = "Release";
+         isa = "PBXBuildFile";
+         fileRef = "Schulze::SchulzeLibrary::Product";
       };
       "OBJ_52" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode_10/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Debug";
+         isa = "PBXTargetDependency";
+         target = "Moderator::Moderator";
       };
       "OBJ_53" = {
-         isa = "XCBuildConfiguration";
-         buildSettings = {
-            LD = "/usr/bin/true";
-            OTHER_SWIFT_FLAGS = (
-               "-swift-version",
-               "4.2",
-               "-I",
-               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
-               "-target",
-               "x86_64-apple-macosx10.10",
-               "-sdk",
-               "/Applications/Xcode_10/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
-            );
-            SWIFT_VERSION = "4.2";
-         };
-         name = "Release";
-      };
-      "OBJ_54" = {
-         isa = "PBXSourcesBuildPhase";
-         files = (
-            "OBJ_55"
-         );
+         isa = "PBXTargetDependency";
+         target = "Schulze::SchulzeLibrary";
       };
       "OBJ_55" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_6";
-      };
-      "OBJ_57" = {
          isa = "XCConfigurationList";
          buildConfigurations = (
-            "OBJ_58",
-            "OBJ_59"
+            "OBJ_56",
+            "OBJ_57"
          );
          defaultConfigurationIsVisible = "0";
          defaultConfigurationName = "Release";
       };
-      "OBJ_58" = {
+      "OBJ_56" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Schulze.xcodeproj/SchulzeLibrary_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "SchulzeLibrary";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "SchulzeLibrary";
          };
          name = "Debug";
       };
-      "OBJ_59" = {
+      "OBJ_57" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
+            ENABLE_TESTABILITY = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Schulze.xcodeproj/SchulzeLibrary_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/macosx"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            PRODUCT_BUNDLE_IDENTIFIER = "SchulzeLibrary";
+            PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
+            PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+            SKIP_INSTALL = "YES";
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "SchulzeLibrary";
          };
          name = "Release";
+      };
+      "OBJ_58" = {
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_59"
+         );
+      };
+      "OBJ_59" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_11";
       };
       "OBJ_6" = {
          isa = "PBXFileReference";
@@ -593,8 +631,9 @@
          sourceTree = "<group>";
       };
       "OBJ_60" = {
-         isa = "PBXTargetDependency";
-         target = "Schulze::SchulzeTests";
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+         );
       };
       "OBJ_62" = {
          isa = "XCConfigurationList";
@@ -608,114 +647,83 @@
       "OBJ_63" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Schulze.xcodeproj/SchulzeTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
+            LD = "/usr/bin/true";
             OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode_10/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
-            TARGET_NAME = "SchulzeTests";
          };
          name = "Debug";
       };
       "OBJ_64" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
-            CLANG_ENABLE_MODULES = "YES";
-            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
-            FRAMEWORK_SEARCH_PATHS = (
-               "$(inherited)",
-               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
-            );
-            HEADER_SEARCH_PATHS = (
-               "$(inherited)"
-            );
-            INFOPLIST_FILE = "Schulze.xcodeproj/SchulzeTests_Info.plist";
-            LD_RUNPATH_SEARCH_PATHS = (
-               "$(inherited)",
-               "@loader_path/../Frameworks",
-               "@loader_path/Frameworks"
-            );
-            OTHER_CFLAGS = (
-               "$(inherited)"
-            );
-            OTHER_LDFLAGS = (
-               "$(inherited)"
-            );
+            LD = "/usr/bin/true";
             OTHER_SWIFT_FLAGS = (
-               "$(inherited)"
-            );
-            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
-               "$(inherited)"
+               "-swift-version",
+               "4.2",
+               "-I",
+               "$(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2",
+               "-target",
+               "x86_64-apple-macosx10.10",
+               "-sdk",
+               "/Applications/Xcode_10/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk"
             );
             SWIFT_VERSION = "4.2";
-            TARGET_NAME = "SchulzeTests";
          };
          name = "Release";
       };
       "OBJ_65" = {
          isa = "PBXSourcesBuildPhase";
          files = (
-            "OBJ_66",
-            "OBJ_67"
+            "OBJ_66"
          );
       };
       "OBJ_66" = {
          isa = "PBXBuildFile";
-         fileRef = "OBJ_13";
-      };
-      "OBJ_67" = {
-         isa = "PBXBuildFile";
-         fileRef = "OBJ_14";
+         fileRef = "OBJ_6";
       };
       "OBJ_68" = {
-         isa = "PBXFrameworksBuildPhase";
-         files = (
-            "OBJ_69"
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_69",
+            "OBJ_70"
          );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
       };
       "OBJ_69" = {
-         isa = "PBXBuildFile";
-         fileRef = "Moderator::Moderator::Product";
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
       };
       "OBJ_7" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_8"
+            "OBJ_8",
+            "OBJ_10"
          );
          name = "Sources";
          path = "";
          sourceTree = "SOURCE_ROOT";
       };
       "OBJ_70" = {
-         isa = "PBXTargetDependency";
-         target = "Schulze::Schulze";
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
       };
       "OBJ_71" = {
          isa = "PBXTargetDependency";
-         target = "Moderator::Moderator";
+         target = "Schulze::SchulzeTests";
       };
       "OBJ_73" = {
          isa = "XCConfigurationList";
@@ -729,75 +737,201 @@
       "OBJ_74" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Schulze.xcodeproj/SchulzeTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "SchulzeTests";
          };
          name = "Debug";
       };
       "OBJ_75" = {
          isa = "XCBuildConfiguration";
          buildSettings = {
+            CLANG_ENABLE_MODULES = "YES";
+            EMBEDDED_CONTENT_CONTAINS_SWIFT = "YES";
+            FRAMEWORK_SEARCH_PATHS = (
+               "$(inherited)",
+               "$(PLATFORM_DIR)/Developer/Library/Frameworks"
+            );
+            HEADER_SEARCH_PATHS = (
+               "$(inherited)"
+            );
+            INFOPLIST_FILE = "Schulze.xcodeproj/SchulzeTests_Info.plist";
+            LD_RUNPATH_SEARCH_PATHS = (
+               "$(inherited)",
+               "@loader_path/../Frameworks",
+               "@loader_path/Frameworks"
+            );
+            OTHER_CFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_LDFLAGS = (
+               "$(inherited)"
+            );
+            OTHER_SWIFT_FLAGS = (
+               "$(inherited)"
+            );
+            SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+               "$(inherited)"
+            );
+            SWIFT_VERSION = "4.2";
+            TARGET_NAME = "SchulzeTests";
          };
          name = "Release";
       };
       "OBJ_76" = {
-         isa = "PBXTargetDependency";
-         target = "Schulze::Schulze";
+         isa = "PBXSourcesBuildPhase";
+         files = (
+            "OBJ_77",
+            "OBJ_78"
+         );
+      };
+      "OBJ_77" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_14";
+      };
+      "OBJ_78" = {
+         isa = "PBXBuildFile";
+         fileRef = "OBJ_15";
+      };
+      "OBJ_79" = {
+         isa = "PBXFrameworksBuildPhase";
+         files = (
+            "OBJ_80"
+         );
       };
       "OBJ_8" = {
          isa = "PBXGroup";
          children = (
-            "OBJ_9",
-            "OBJ_10"
+            "OBJ_9"
          );
-         name = "Schulze";
-         path = "Sources/Schulze";
+         name = "SchulzeCLI";
+         path = "Sources/SchulzeCLI";
          sourceTree = "SOURCE_ROOT";
+      };
+      "OBJ_80" = {
+         isa = "PBXBuildFile";
+         fileRef = "Schulze::SchulzeLibrary::Product";
+      };
+      "OBJ_81" = {
+         isa = "PBXTargetDependency";
+         target = "Schulze::SchulzeLibrary";
+      };
+      "OBJ_83" = {
+         isa = "XCConfigurationList";
+         buildConfigurations = (
+            "OBJ_84",
+            "OBJ_85"
+         );
+         defaultConfigurationIsVisible = "0";
+         defaultConfigurationName = "Release";
+      };
+      "OBJ_84" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Debug";
+      };
+      "OBJ_85" = {
+         isa = "XCBuildConfiguration";
+         buildSettings = {
+         };
+         name = "Release";
+      };
+      "OBJ_86" = {
+         isa = "PBXTargetDependency";
+         target = "Schulze::SchulzeCLI";
       };
       "OBJ_9" = {
          isa = "PBXFileReference";
-         path = "Schulze.swift";
+         path = "main.swift";
          sourceTree = "<group>";
       };
-      "Schulze::Schulze" = {
+      "Schulze::SchulzeCLI" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_41";
+         buildConfigurationList = "OBJ_44";
          buildPhases = (
-            "OBJ_44",
-            "OBJ_47"
-         );
-         dependencies = (
+            "OBJ_47",
             "OBJ_49"
          );
-         name = "Schulze";
-         productName = "Schulze";
-         productReference = "Schulze::Schulze::Product";
+         dependencies = (
+            "OBJ_52",
+            "OBJ_53"
+         );
+         name = "SchulzeCLI";
+         productName = "SchulzeCLI";
+         productReference = "Schulze::SchulzeCLI::Product";
          productType = "com.apple.product-type.tool";
       };
-      "Schulze::Schulze::Product" = {
+      "Schulze::SchulzeCLI::Product" = {
          isa = "PBXFileReference";
-         path = "Schulze";
+         path = "SchulzeCLI";
+         sourceTree = "BUILT_PRODUCTS_DIR";
+      };
+      "Schulze::SchulzeLibrary" = {
+         isa = "PBXNativeTarget";
+         buildConfigurationList = "OBJ_55";
+         buildPhases = (
+            "OBJ_58",
+            "OBJ_60"
+         );
+         dependencies = (
+         );
+         name = "SchulzeLibrary";
+         productName = "SchulzeLibrary";
+         productReference = "Schulze::SchulzeLibrary::Product";
+         productType = "com.apple.product-type.framework";
+      };
+      "Schulze::SchulzeLibrary::Product" = {
+         isa = "PBXFileReference";
+         path = "SchulzeLibrary.framework";
          sourceTree = "BUILT_PRODUCTS_DIR";
       };
       "Schulze::SchulzePackageTests::ProductTarget" = {
          isa = "PBXAggregateTarget";
-         buildConfigurationList = "OBJ_57";
+         buildConfigurationList = "OBJ_68";
          buildPhases = (
          );
          dependencies = (
-            "OBJ_60"
+            "OBJ_71"
          );
          name = "SchulzePackageTests";
          productName = "SchulzePackageTests";
       };
       "Schulze::SchulzeTests" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_62";
+         buildConfigurationList = "OBJ_73";
          buildPhases = (
-            "OBJ_65",
-            "OBJ_68"
+            "OBJ_76",
+            "OBJ_79"
          );
          dependencies = (
-            "OBJ_70",
-            "OBJ_71"
+            "OBJ_81"
          );
          name = "SchulzeTests";
          productName = "SchulzeTests";
@@ -811,9 +945,9 @@
       };
       "Schulze::SwiftPMPackageDescription" = {
          isa = "PBXNativeTarget";
-         buildConfigurationList = "OBJ_51";
+         buildConfigurationList = "OBJ_62";
          buildPhases = (
-            "OBJ_54"
+            "OBJ_65"
          );
          dependencies = (
          );
@@ -823,11 +957,11 @@
       };
       "Schulze::schulze::ProductTarget" = {
          isa = "PBXAggregateTarget";
-         buildConfigurationList = "OBJ_73";
+         buildConfigurationList = "OBJ_83";
          buildPhases = (
          );
          dependencies = (
-            "OBJ_76"
+            "OBJ_86"
          );
          name = "schulze";
          productName = "schulze";

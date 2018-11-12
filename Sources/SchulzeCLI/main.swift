@@ -1,5 +1,6 @@
 import Foundation
 import Moderator
+import SchulzeLibrary
 
 
 // MARK: - Command Line Interface -
@@ -51,6 +52,7 @@ let helpOption = arguments.add(
 do {
     try arguments.parse()
 
+    // Print help
     if helpOption.value {
         print(arguments.usagetext)
         exit(0)
@@ -97,20 +99,8 @@ do {
         }
     }
 
-
     // Calculate final ranking
-    var finalRanking = [[String]]()
-    var rankedCandidates = Set<String>()
-    let candidateSet = rankings.reduce(into: Set<String>()) { $0.formUnion($1) }
-    var candidates = Array(candidateSet).sorted()
-
-    while rankedCandidates.count < candidateSet.count {
-        let indexedRankings = rankings.map { ranking in ranking.compactMap { candidates.index(of: $0) }}
-        let rank = Schulze.winners(of: candidates, rankings: indexedRankings)
-        candidates.removeAll(where: { rank.contains($0) })
-        rankedCandidates.formUnion(rank)
-        finalRanking.append(rank)
-    }
+    let finalRanking = Schulze.ranking(rankings: rankings)
 
     // Output final ranking
     if formatOption.value == OutputFormat.json.rawValue {
