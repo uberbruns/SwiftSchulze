@@ -11,12 +11,13 @@ import Foundation
 private class SimpleMatrix<Row: Hashable, Column: Hashable, Value> {
     var data = [Row:[Column:Value]]()
 
-    func set(_ row: Row, _ column: Column, value: Value) {
-        data[row, default: [Column:Value]()][column] = value
-    }
-
-    func get(_ row: Row, _ column: Column) -> Value {
-        return data[row]![column]!
+    subscript(_ row: Row, _ column: Column) -> Value {
+        get {
+            return data[row]![column]!
+        }
+        set {
+            data[row, default: [Column:Value]()][column] = newValue
+        }
     }
 }
 
@@ -34,18 +35,18 @@ public enum Schulze {
                 let aOverB = numberOfVotesPreferring(candidateA, over: candidateB, rankings: rankings, candidateCount: candidateCount)
                 let bOverA = numberOfVotesPreferring(candidateB, over: candidateA, rankings: rankings, candidateCount: candidateCount)
                 let voteConnectionStrength = aOverB > bOverA ? aOverB : 0
-                matrix.set(candidateA, candidateB, value: voteConnectionStrength)
+                matrix[candidateA, candidateB] = voteConnectionStrength
             }
         }
 
         for candidateA in candidates {
             for candidateB in candidates where candidateA != candidateB {
                 for candidateK in candidates where candidateA != candidateK && candidateB != candidateK {
-                    let strengthBetweenBandK = matrix.get(candidateB, candidateK)
-                    let strengthBetweenBandA = matrix.get(candidateB, candidateA)
-                    let strengthBetweenAandK = matrix.get(candidateA, candidateK)
+                    let strengthBetweenBandK = matrix[candidateB, candidateK]
+                    let strengthBetweenBandA = matrix[candidateB, candidateA]
+                    let strengthBetweenAandK = matrix[candidateA, candidateK]
                     let voteConnectionStrength = max(strengthBetweenBandK, min(strengthBetweenBandA, strengthBetweenAandK))
-                    matrix.set(candidateB, candidateK, value: voteConnectionStrength)
+                    matrix[candidateB, candidateK] = voteConnectionStrength
                 }
             }
         }
@@ -53,8 +54,8 @@ public enum Schulze {
         for candidateA in candidates {
             var isCandidateAaWinner = true
             for candidateB in candidates where candidateA != candidateB {
-                let strengthBetweenAandB = matrix.get(candidateA, candidateB)
-                let strengthBetweenBandA = matrix.get(candidateB, candidateA)
+                let strengthBetweenAandB = matrix[candidateA, candidateB]
+                let strengthBetweenBandA = matrix[candidateB, candidateA]
                 isCandidateAaWinner = isCandidateAaWinner && (strengthBetweenAandB >= strengthBetweenBandA)
             }
             if isCandidateAaWinner {
@@ -65,8 +66,22 @@ public enum Schulze {
         return winnerList
     }
 
-    
-    public static func ranking<C: Hashable>(rankings: [[C]]) -> [[C]] where C: Comparable, C: CustomStringConvertible {
+    private static func numberOfVotesPreferring<C: Equatable>(_ a: C, over b: C, rankings: [[C]], candidateCount: Int) -> Int {
+        var votesPreferingAoverB = 0
+        for ranking in rankings {
+            let indexOfA = ranking.index(of: a) ?? candidateCount - 1
+            let indexOfB = ranking.index(of: b) ?? candidateCount - 1
+            if indexOfA < indexOfB {
+                votesPreferingAoverB += 1
+            }
+        }
+        return votesPreferingAoverB
+    }
+}
+
+
+public extension Schulze {
+    static func ranking<C: Hashable>(rankings: [[C]]) -> [[C]] where C: Comparable, C: CustomStringConvertible {
         var finalRanking = [[C]]()
         var rankedCandidates = Set<C>()
         let candidateSet = rankings.reduce(into: Set<C>()) { $0.formUnion($1) }
@@ -80,18 +95,5 @@ public enum Schulze {
             finalRanking.append(rank)
         }
         return finalRanking
-    }
-
-
-    private static func numberOfVotesPreferring<C: Equatable>(_ a: C, over b: C, rankings: [[C]], candidateCount: Int) -> Int {
-        var votesPreferingAoverB = 0
-        for ranking in rankings {
-            let indexOfA = ranking.index(of: a) ?? candidateCount - 1
-            let indexOfB = ranking.index(of: b) ?? candidateCount - 1
-            if indexOfA < indexOfB {
-                votesPreferingAoverB += 1
-            }
-        }
-        return votesPreferingAoverB
     }
 }
