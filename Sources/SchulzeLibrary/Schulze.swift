@@ -26,16 +26,15 @@ public enum Schulze {
 
     public static func winners<C: Hashable>(of candidates: [C], rankings: [[C]]) -> [C] where C: CustomStringConvertible {
         // Determine winner with the Schulze method
-        let candidateCount = candidates.count
         let matrix = SimpleMatrix<C, C, Int>()
         var winnerList = [C]()
 
         for candidateA in candidates {
             for candidateB in candidates where candidateA != candidateB {
-                let aOverB = numberOfVotesPreferring(candidateA, over: candidateB, rankings: rankings, candidateCount: candidateCount)
-                let bOverA = numberOfVotesPreferring(candidateB, over: candidateA, rankings: rankings, candidateCount: candidateCount)
-                let voteConnectionStrength = aOverB > bOverA ? aOverB : 0
-                matrix[candidateA, candidateB] = voteConnectionStrength
+                let aOverB = numberOfVotesPreferring(candidateA, over: candidateB, rankings: rankings)
+                let bOverA = numberOfVotesPreferring(candidateB, over: candidateA, rankings: rankings)
+                let numberOfVotesPreferringAOverB = aOverB > bOverA ? aOverB : 0
+                matrix[candidateA, candidateB] = numberOfVotesPreferringAOverB
             }
         }
 
@@ -66,11 +65,11 @@ public enum Schulze {
         return winnerList
     }
 
-    private static func numberOfVotesPreferring<C: Equatable>(_ a: C, over b: C, rankings: [[C]], candidateCount: Int) -> Int {
+    private static func numberOfVotesPreferring<C: Equatable>(_ a: C, over b: C, rankings: [[C]]) -> Int {
         var votesPreferingAoverB = 0
         for ranking in rankings {
-            let indexOfA = ranking.index(of: a) ?? candidateCount - 1
-            let indexOfB = ranking.index(of: b) ?? candidateCount - 1
+            let indexOfA = ranking.index(of: a) ?? Int.max
+            let indexOfB = ranking.index(of: b) ?? Int.max
             if indexOfA < indexOfB {
                 votesPreferingAoverB += 1
             }
